@@ -613,7 +613,7 @@ readonly class DockerActionManager {
     public function PullImage(Container $container) : void
     {
         $imageName = $this->BuildImageName($container);
-        $encodedImageName = urlencode($imageName);
+        $encodedImageName = urlencode("ghcr.io/devnoname120/all-in-one/" . $imageName);
         $url = $this->BuildApiUrl(sprintf('images/create?fromImage=%s', $encodedImageName));
         $imageIsThere = true;
         try {
@@ -773,7 +773,7 @@ readonly class DockerActionManager {
 
     public function IsMastercontainerUpdateAvailable() : bool
     {
-        $imageName = 'nextcloud/all-in-one';
+        $imageName = 'ghcr.io/devnoname120/all-in-one/all-in-one';
         $containerName = 'nextcloud-aio-mastercontainer';
 
         $tag = $this->GetCurrentChannel();
@@ -1014,7 +1014,7 @@ readonly class DockerActionManager {
     }
 
     private function GetCreatedTimeOfNextcloudImage() : ?string {
-        $imageName = 'nextcloud/aio-nextcloud' . ':' . $this->GetCurrentChannel();
+        $imageName = 'ghcr.io/devnoname120/aio-nextcloud' . ':' . $this->GetCurrentChannel();
         try {
             $imageUrl = $this->BuildApiUrl(sprintf('images/%s/json', $imageName));
             $imageOutput = json_decode($this->guzzleClient->get($imageUrl)->getBody()->getContents(), true);
