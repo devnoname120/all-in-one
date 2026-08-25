@@ -24,7 +24,7 @@ spec:
     spec:
       initContainers:
         - name: init-volumes
-          image: ghcr.io/nextcloud-releases/aio-alpine:20260409_094910
+          image: ghcr.io/nextcloud-releases/aio-alpine:20260825_084538
           command:
             - chmod
             - "777"
@@ -48,13 +48,19 @@ spec:
               value: single-node
             - name: http.port
               value: "9200"
+            - name: indices.fielddata.cache.size
+              value: 20%
+            - name: indices.memory.index_buffer_size
+              value: 20%
             - name: logger.level
               value: WARN
+            - name: thread_pool.write.queue_size
+              value: "1000"
             - name: xpack.license.self_generated.type
               value: basic
             - name: xpack.security.enabled
               value: "false"
-          image: ghcr.io/nextcloud-releases/aio-fulltextsearch:20260409_094910
+          image: ghcr.io/nextcloud-releases/aio-fulltextsearch:20260825_084538
           readinessProbe:
             exec:
               command:
