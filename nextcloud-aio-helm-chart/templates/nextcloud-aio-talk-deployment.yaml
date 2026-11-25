@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.version: 1.38.0 (a8f5d1cbd)
+    kompose.version: 1.39.0 (f90c0f540)
   labels:
     io.kompose.service: nextcloud-aio-talk
   name: nextcloud-aio-talk
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.version: 1.38.0 (a8f5d1cbd)
+        kompose.version: 1.39.0 (f90c0f540)
       labels:
         io.kompose.service: nextcloud-aio-talk
     spec:
@@ -54,7 +54,7 @@ spec:
               value: "{{ .Values.TURN_SECRET }}"
             - name: TZ
               value: "{{ .Values.TIMEZONE }}"
-          image: ghcr.io/nextcloud-releases/aio-talk:20260409_094910
+          image: ghcr.io/nextcloud-releases/aio-talk:20261119_161514
           readinessProbe:
             exec:
               command:
